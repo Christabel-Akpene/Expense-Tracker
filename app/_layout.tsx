@@ -3,6 +3,7 @@ import { Stack } from "expo-router";
 import {useFonts, Montserrat_400Regular, Montserrat_700Bold} from "@expo-google-fonts/montserrat"
 import { useEffect } from "react";
 import * as SplashScreen from "expo-splash-screen"
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
@@ -17,6 +18,10 @@ export default function RootLayout() {
   if (!loaded && !error) {
     return null
   }
-  
-  return <Stack />;
+
+  return(
+    <SafeAreaProvider>
+      <Stack screenOptions={{headerShown: false}}/>
+    </SafeAreaProvider>
+  );
 }
